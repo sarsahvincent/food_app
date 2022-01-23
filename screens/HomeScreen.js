@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS } from "../constants/colors";
@@ -17,10 +18,12 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import { categories } from "../constants/categories";
+import { foods } from "../constants/food";
+import FoodCard from "../components/FoodCard";
 
 //<MaterialIcons name="tune" size={24} color="black" />
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
 
   const ListCategories = () => {
@@ -70,6 +73,10 @@ const HomeScreen = () => {
       </ScrollView>
     );
   };
+
+  const Card = () => {
+    return <View style={styles.card}></View>;
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -111,6 +118,15 @@ const HomeScreen = () => {
       <View>
         <ListCategories />
       </View>
+      <FlatList
+       keyExtractor={(item) => item.id}
+        showsHorizontalScrollIndicator={false}
+        numColumns={2}
+        data={foods}
+        renderItem={({ item }) => (
+          <FoodCard food={item} title={item.name} navigation={navigation} />
+        )}
+      />
     </SafeAreaView>
   );
 };
