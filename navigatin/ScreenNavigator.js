@@ -97,9 +97,8 @@ function BottomNavigator() {
                 title="Menu"
                 iconName="arrow-back-ios"
                 onPress={() => navigation.navigate("HomeScreen")}
-                color= "black"
+                color="black"
               />
-           
             </HeaderButtons>
           ),
           tabBarLabel: "Carts",
